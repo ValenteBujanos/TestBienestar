@@ -34,7 +34,7 @@ const FormU = ({navigation}) => {
                     />
                     <BlueButton
                     navigation={navigation}
-                    navegar=""
+                    navegar="EndMsg"
                     titulo="Siguiente"
                     />
                 </View>

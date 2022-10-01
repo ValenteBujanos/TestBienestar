@@ -70,7 +70,7 @@ const Index = ({ navigation }) => {
                             color: '#69BE28',
                         }}
                         onPress={() => {
-                            
+                            navigation.navigate('Register')
                         }}>
                         Regístrate
                     </Text>
@@ -85,8 +85,7 @@ const Index = ({ navigation }) => {
                             marginRight: '12%',
                             fontSize: 16,
                             fontFamily: 'MontserratRegular',
-                        }}
-                        onPress={() => {navigation.navigate("Reports");}}>
+                        }}>
                         ¿Has olvidado la contraseña?
                     </Text>
                     <TouchableOpacity style={styles.logInButton}
