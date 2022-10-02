@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import { StyleSheet, Text, View, TextInput, ScrollView, TouchableOpacity } from 'react-native'
 import TitleView from '../components/TitleView';
+import axios from 'axios';
 
 const Register = ({ navigation }) => {
 
@@ -107,6 +108,7 @@ const Register = ({ navigation }) => {
                                     let val = res.data[0];
                                     if(val.Registered==true){
                                         navigation.navigate('Index');
+                                        console.log('Registro exitoso')
                                     }else{
                                         alert("Error: No se pudo registar al usuario");
                                     }
@@ -114,6 +116,7 @@ const Register = ({ navigation }) => {
                                 .catch((error)=>{
                                     if(error.response){
                                         console.log(error.response);
+                                        console.log('Error de conexion')
                                     }
                                 })
                             }
