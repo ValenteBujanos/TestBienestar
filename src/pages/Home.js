@@ -77,6 +77,7 @@ const styles = StyleSheet.create({
     },
     mainContainer: {
         width: '100%',
+        backgroundColor: '#ffffff'
     },
     container: {
         display: 'flex',
