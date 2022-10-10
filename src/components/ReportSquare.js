@@ -1,13 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { StyleSheet, Text, TouchableOpacity, View, Image } from 'react-native'
 
 const ReportSquare = ({ text, image, navigation }) => {
+
+    //Mandar valores a la siguiente pagina
+    const [motivo, setMotivo] = useState(text);
 
     return (
         <View style={styles.container}>
             <View>
                 <TouchableOpacity
                     onPress={() => {
+                        //setMotivo(text)
+                        console.log({motivo})
                         navigation.navigate('FormData')
                     }}>
                     <Image source={image} style={styles.image} />

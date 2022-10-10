@@ -75,7 +75,7 @@ const FormData = ({ navigation }) => {
                     texto="*Reportado por:"
                     placeholder="Nombre Completo"
                     />
-                    <DisabledInput texto="*Motivo del Reporte:" placeholder="Motivo" />
+                    <DisabledInput texto="*Motivo del Reporte:" placeholder={"Motivo"} />
                     <DisabledInput
                         texto="*Fecha:"
                         placeholder="Fecha"
