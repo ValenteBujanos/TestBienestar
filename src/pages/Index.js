@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
-import { ScrollView, StyleSheet, Text, View, TouchableOpacity } from 'react-native'
+import { ScrollView, StyleSheet, Text, View, TouchableOpacity, Pressable } from 'react-native'
 import { useEffect, useCallback } from 'react';
 import { useFonts } from 'expo-font';
 import TitleView from '../components/TitleView';
 import { TextInput } from 'react-native-gesture-handler';
+import { verifyUser } from "../assets/req/Login";
 
 const Index = ({ navigation }) => {
 
@@ -85,19 +86,66 @@ const Index = ({ navigation }) => {
                             marginRight: '12%',
                             fontSize: 16,
                             fontFamily: 'MontserratRegular',
-                        }}>
+                        }}
+                        onPress={() => {
+                            navigation.navigate("Home");
+                          }}
+                        >
                         ¿Has olvidado la contraseña?
                     </Text>
-                    <TouchableOpacity style={styles.logInButton}
-                        onPress={() => {
-                            let values = {
-                                username: user,
-                                password: pass,
+
+                    {/* Inicio Pressable */}
+                    <Pressable
+                        style={({ pressed }) => [
+                        {
+                            marginTop: 30,
+                            backgroundColor: pressed ? "#002244" : "#FFFFFF",
+                            borderColor: '#002244',
+                            borderWidth: 2,
+                            width: '80%',
+                            borderRadius: 4,
+                            alignItems: 'center',
+                            margin: 10,
+                        },
+                        ]}
+                        onPress={async () => {
+                        if (!(user == "") && !(pass == "")) {
+                            let req = await verifyUser({ user, pass });
+                            let res = req.data;
+
+                            if (res[0].Logged_in == true) {
+                            navigation.navigate("Home");
+                            } else {
+                            Alert.alert(
+                                "Error",
+                                "Contraseña y/o usuario incorrecto(s)",
+                                [{ text: "OK" }]
+                            );
                             }
-                            navigation.navigate('Home')
-                        }}>
-                        <Text style={styles.btnLogInTxt}>Iniciar Sesión</Text>
-                    </TouchableOpacity>
+                        } else {
+                            Alert.alert(
+                            "Error",
+                            "Ingresa un correo y contraseña para continuar.",
+                            [{ text: "OK" }]
+                            );
+                        }
+                        }}
+                        >
+                            {({ pressed }) => (
+                  <Text
+                    style={{
+                        fontFamily: 'MontserratRegular',
+                        fontSize: 20,
+                        lineHeight: 19.5,
+                        margin: 10,
+                        color: pressed ? "#FFFFFF" : "#002244",
+                    }}
+                  >
+                    Iniciar sesión
+                  </Text>
+                )}
+                    </Pressable>
+                    {/* Fin Pressable */}
                 </View>
             </View>
         </ScrollView>
